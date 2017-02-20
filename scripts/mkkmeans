@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+__title__ = 'hardclustersets'
+__author__ = 'Steven Cutting'
+__author_email__ = 'steven.e.cutting@linux.com'
+__created_on__ = '01/30/2016'
+__copyright__ = "hardclustersets  Copyright (C) 2016  Steven Cutting"
+__credits__ = ["Steven Cutting"]
+__license__ = "GPL3"
+__maintainer__ = "Steven Cutting"
+__email__ = 'steven.e.cutting@linux.com'
+
+
+import click
+
+from hardclustersets import new_clstr_setfiles
+
+
+@click.command()
+@click.argument('model', default='lda')
+@click.option('--n_clusters', '-K',
+              default=8,
+              help='The number of clusters to form as well as the number of centroids to generate.')
+@click.option('--n_init', '-I', default=100,
+              help='Number of random initializations that are tried.')
+@click.option('--random_state', '-R', default=1,
+              help='The generator used to initialize the centers.')
+def main(model,
+         n_clusters,
+         n_init,
+         random_state):
+    setfiles = new_clstr_setfiles(model=model,
+                                  n_clusters=n_clusters,
+                                  n_init=n_init,
+                                  random_state=random_state)
+    print(list(setfiles))
+
+
+if __name__ == '__main__':
+    main()
+    """hardclustersets  Copyright (C) 2016  Steven Cutting"""
